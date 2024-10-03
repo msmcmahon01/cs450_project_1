@@ -5,6 +5,7 @@
 #include <ctype.h>
 #include <time.h>
 #include <iostream>
+#include "functions.cpp"
 
 
 #ifndef F_PI
@@ -849,19 +850,20 @@ InitLists( )
 					}
 
 			// Upper bell pipe
-			glColor3f(1, 1, 0);
-				glNormal3f(0, 0, 0);
-					for (int i = 0; i < verticies; ++i) {
-						//glColor3f(1, 0, 0);
-						glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness, (cos((i * 2 * M_PI) / verticies)) / tube_thinness, -2);
-						glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness, (cos((i * 2 * M_PI) / verticies)) / tube_thinness, -10);
-						glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness, (cos(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness, -10);
+			//glColor3f(1, 1, 0);
+			//	glNormal3f(0, 0, 0);
+			//		for (int i = 0; i < verticies; ++i) {
+			//			//glColor3f(1, 0, 0);
+			//			glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness, (cos((i * 2 * M_PI) / verticies)) / tube_thinness, -2);
+			//			glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness, (cos((i * 2 * M_PI) / verticies)) / tube_thinness, -10);
+			//			glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness, (cos(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness, -10);
 
-						//glColor3f(0, 1, 0);
-						glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness, (cos((i * 2 * M_PI) / verticies)) / tube_thinness, -2);
-						glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness, (cos(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness, -10);
-						glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness, (cos(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness, -2);
-					}
+			//			//glColor3f(0, 1, 0);
+			//			glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness, (cos((i * 2 * M_PI) / verticies)) / tube_thinness, -2);
+			//			glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness, (cos(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness, -10);
+			//			glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness, (cos(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness, -2);
+			//		}
+			TrmptTubeXY(0, 0, -2, -10, verticies, tube_thinness);
 
 			// Lower bell pipe
 			glColor3f(1, 0, 1);
