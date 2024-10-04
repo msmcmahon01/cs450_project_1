@@ -66,7 +66,7 @@ const int ESCAPE = 0x1b;
 
 // initial window size:
 
-const int INIT_WINDOW_SIZE = 600;
+const int INIT_WINDOW_SIZE = 800;
 
 // size of the 3d box to be drawn:
 
@@ -502,7 +502,7 @@ Display( )
 
 	glDisable( GL_DEPTH_TEST );
 	glColor3f( 0.f, 1.f, 1.f );
-	//DoRasterString( 0.f, 1.f, 0.f, (char *)"Text That Moves" );
+	//DoRasterString( 0.f, 1.f, 0.f, (char *)"Text That Moves"  );
 
 
 	// draw some gratuitous text that is fixed on the screen:
@@ -805,11 +805,11 @@ InitLists( )
 
 	glTranslatef(0.f, 0.5f, 5.f);
 
-		int verticies = 100;
+		int verticies = 8; // does not go over 400-something :)
 		int tube_thinness = 5;
 
 		// Bell
-		TrmptBell(0.f, 0.f, 0.f, -4.f, verticies, tube_thinness, 0.929f, 0.996f, 1.f);
+		TrmptBell(0.f, 0.f, -0.5f, -4.f, verticies, tube_thinness, 0.929f, 0.996f, 1.f);
 
 		// Upper bell pipe
 		TrmptTubeXY(0.f, 0.f, -4.f, -10.f, verticies, tube_thinness, 0.776f, 0.988f, 1.f);

@@ -28,7 +28,7 @@ TrmptBell(float x_pos, float y_pos, float z_pos_s, float z_pos_e, int verticies,
 			float cosNumi1 = cos((1 + i) * F_2_PI / verticies);
 
 			glColor3f(r, g, b);
-			glVertex3f(sinNum + x_pos, cosNum + y_pos, z_pos_s);
+			glVertex3f(sinNum * 1.5f + x_pos, cosNum * 1.5f + y_pos, z_pos_s);
 			glVertex3f(sinNum / (thinness * 2 / 4) + x_pos, cosNum / (thinness * 2 / 4) + y_pos, z_pos_e / 4);
 			glVertex3f(sinNumi1 / (thinness * 2 / 4) + x_pos, cosNumi1 / (thinness * 2 / 4) + y_pos, z_pos_e / 4);
 
@@ -37,9 +37,9 @@ TrmptBell(float x_pos, float y_pos, float z_pos_s, float z_pos_e, int verticies,
 			glVertex3f(sinNumi1 / thinness + x_pos, cosNumi1 / thinness + y_pos, z_pos_e);
 
 			glColor3f(r, g, b);
-			glVertex3f(sinNum + x_pos, cosNum + y_pos, z_pos_s);
+			glVertex3f(sinNum * 1.5f + x_pos, cosNum * 1.5f + y_pos, z_pos_s);
 			glVertex3f(sinNumi1 / (thinness * 2 / 4) + x_pos, cosNumi1 / (thinness * 2 / 4) + y_pos, z_pos_e / 4);
-			glVertex3f(sinNumi1 + x_pos, cosNumi1 + y_pos, z_pos_s);
+			glVertex3f(sinNumi1 * 1.5f + x_pos, cosNumi1 * 1.5f + y_pos, z_pos_s);
 
 			glVertex3f(sinNum / (thinness * 2 / 4) + x_pos, cosNum / (thinness * 2 / 4) + y_pos, z_pos_e / 4);
 			glVertex3f(sinNumi1 / thinness + x_pos, cosNumi1 / thinness + y_pos, z_pos_e);
