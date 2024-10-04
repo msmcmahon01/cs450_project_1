@@ -17,44 +17,118 @@
 #endif
 
 
-//void
-//TrmptBell(float x_pos, float y_pos, float z_pos, float x_scale, float y_scale, float z_scale, int verticies, int thinness) {
-//
-//	glBegin( GL_TRIANGLES );
-//
-//	for (int i = 0; i < verticies; ++i) {
-//		float sinNum = (sin(i * F_2_PI)) / verticies;
-//		float cosNum = (cos(i * F_2_PI)) / verticies;
-//		float sinNumi1 = (sin((1 + i) * F_2_PI)) / verticies;
-//		float cosNumi1 = (cos((1 + i) * F_2_PI)) / verticies;
-//
-//		glNormal3f(0, 0, 0);
-//			glVertex3f(sinNum + x_pos, cosNum + y_pos, z_pos);
-//			glVertex3f(((sinNum / (thinness + (z_pos * 4))) + x_pos), ((cosNum / (thinness + (z_pos * 4))) + y_pos), z_pos);
-//			glVertex3f(((sinNumi1 / (thinness + (z_pos * 4))) + x_pos), ((cosNumi1 / (thinness + (z_pos * 4))) + y_pos), z_pos);
-//
-//			glVertex3f()
-//	}
-//}
-
 void
-TrmptTubeXY(float x_pos, float y_pos, float z_pos_s, float z_pos_e, int verticies, int thinness) {
+TrmptBell(float x_pos, float y_pos, float z_pos_s, float z_pos_e, int verticies, int thinness, float r, float g, float b) {
+	glNormal3f(0, 0, 0);
 	for (int i = 0; i < verticies; ++i) {
-		float sinNum = (((sin(i * F_2_PI)) / verticies) / thinness) + x_pos;
-		float cosNum = (((cos(i * F_2_PI)) / verticies) / thinness) + y_pos;
-		float sinNumi1 = (((sin((1 + i) * F_2_PI)) / verticies) / thinness) + x_pos;
-		float cosNumi1 = (((cos((1 + i) * F_2_PI)) / verticies) / thinness) + y_pos;
+		float sinNum = sin(i * F_2_PI / verticies);
+		float cosNum = cos(i * F_2_PI / verticies);
+		float sinNumi1 = sin((1 + i) * F_2_PI / verticies);
+		float cosNumi1 = cos((1 + i) * F_2_PI / verticies);
 
-		glNormal3f(0, 0, 0);
-			//glColor3f(1, 0, 0);
-			glVertex3f(sinNum, cosNum, z_pos_s);
-			glVertex3f(sinNum, cosNum, z_pos_e);
-			glVertex3f(sinNumi1, cosNumi1, z_pos_e);
+		glColor3f(r, g, b);
+		glVertex3f(sinNum + x_pos, cosNum + y_pos, z_pos_s);
+		glVertex3f(sinNum / (thinness * 2 / 4) + x_pos, cosNum / (thinness * 2 / 4) + y_pos, z_pos_e / 4);
+		glVertex3f(sinNumi1 / (thinness * 2 / 4) + x_pos, cosNumi1 / (thinness * 2 / 4) + y_pos, z_pos_e / 4);
 
-			//glColor3f(0, 1, 0);
-			glVertex3f(sinNum, cosNum, z_pos_s);
-			glVertex3f(sinNumi1, cosNumi1, z_pos_e);
-			glVertex3f(sinNumi1, cosNumi1, z_pos_s);
+		glVertex3f(sinNum / (thinness * 2 / 4) + x_pos, cosNum / (thinness * 2 / 4) + y_pos, z_pos_e / 4);
+		glVertex3f(sinNum / thinness + x_pos, cosNum / thinness + y_pos, z_pos_e);
+		glVertex3f(sinNumi1 / thinness + x_pos, cosNumi1 / thinness + y_pos, z_pos_e);
+
+		glColor3f(r, g, b);
+		glVertex3f(sinNum + x_pos, cosNum + y_pos, z_pos_s);
+		glVertex3f(sinNumi1 / (thinness * 2 / 4) + x_pos, cosNumi1 / (thinness * 2 / 4) + y_pos, z_pos_e / 4);
+		glVertex3f(sinNumi1 + x_pos, cosNumi1 + y_pos, z_pos_s);
+
+		glVertex3f(sinNum / (thinness * 2 / 4) + x_pos, cosNum / (thinness * 2 / 4) + y_pos, z_pos_e / 4);
+		glVertex3f(sinNumi1 / thinness + x_pos, cosNumi1 / thinness + y_pos, z_pos_e);
+		glVertex3f(sinNumi1 / (thinness * 2 / 4) + x_pos, cosNumi1 / (thinness * 2 / 4) + y_pos, z_pos_e / 4);
 	}
 }
 
+void
+TrmptTubeXY(float x_pos, float y_pos, float z_pos_s, float z_pos_e, int verticies, int thinness, float r, float g, float b) {
+	glNormal3f(0, 0, 0);
+	for (int i = 0; i < verticies; ++i) {
+		float sinNum = sin(i * F_2_PI / verticies) / thinness + x_pos;
+		float cosNum = cos(i * F_2_PI / verticies) / thinness + y_pos;
+		float sinNumi1 = sin((1 + i) * F_2_PI / verticies) / thinness + x_pos;
+		float cosNumi1 = cos((1 + i) * F_2_PI / verticies) / thinness + y_pos;
+
+		glColor3f(r, g, b);
+		glVertex3f(sinNum, cosNum, z_pos_s);
+		glVertex3f(sinNum, cosNum, z_pos_e);
+		glVertex3f(sinNumi1, cosNumi1, z_pos_e);
+
+		glColor3f(r, g, b);
+		glVertex3f(sinNum, cosNum, z_pos_s);
+		glVertex3f(sinNumi1, cosNumi1, z_pos_e);
+		glVertex3f(sinNumi1, cosNumi1, z_pos_s);
+	}
+}
+
+void
+TrmptTubeXZ(float x_pos, float y_pos_s, float y_pos_e, float z_pos, int verticies, int thinness, float r, float g, float b) {
+	--thinness;
+	glNormal3f(0, 0, 0);
+	for (int i = 0; i < verticies; ++i) {
+		float sinNum = sin(i * F_2_PI / verticies) / thinness + x_pos;
+		float cosNum = cos(i * F_2_PI / verticies) / thinness + z_pos;
+		float sinNumi1 = sin((1 + i) * F_2_PI / verticies) / thinness + x_pos;
+		float cosNumi1 = cos((1 + i) * F_2_PI / verticies) / thinness + z_pos;
+
+		glColor3f(r, g, b);
+		glVertex3f(sinNum, y_pos_s, cosNum);
+		glVertex3f(sinNum, y_pos_e, cosNum);
+		glVertex3f(sinNumi1, y_pos_e, cosNumi1);
+
+		glColor3f(r, g, b);
+		glVertex3f(sinNum, y_pos_s, cosNum);
+		glVertex3f(sinNumi1, y_pos_e, cosNumi1);
+		glVertex3f(sinNumi1, y_pos_s, cosNumi1);
+	}
+}
+
+void
+TrmptTubeCurve(float innerRadius, float outerRadius, int nsides, int nrings) {
+	float ringDelta = F_PI / (float)nrings;
+	float sideDelta = 2.0 * F_PI / (float)nsides;
+
+	float theta = 0.0;
+	float cosTheta = 1.0;
+	float sinTheta = 0.0;
+
+	for (int i = 0; i < nrings; i++)
+	{
+		float theta1 = theta + ringDelta;
+		float cosTheta1 = cosf(theta1);
+		float sinTheta1 = sinf(theta1);
+
+		float phi = 0.0;
+		float s0 = 1.f - (float)(i + 0) / (float)nrings;
+		float s1 = 1.f - (float)(i + 1) / (float)nrings;
+
+		for (int j = 0; j <= nsides; j++)
+		{
+			float cosPhi = cosf(phi);
+			float sinPhi = sinf(phi);
+			float dist = outerRadius + innerRadius * cosPhi;
+
+			float t = 1.f - (float)j / (float)nsides;
+
+			glTexCoord2f(s0, t);
+			glNormal3f(cosTheta * cosPhi, sinPhi, -sinTheta * cosPhi);
+			glVertex3f(cosTheta * dist, innerRadius * sinPhi, -sinTheta * dist);
+
+			glTexCoord2f(s1, t);
+			glNormal3f(cosTheta1 * cosPhi, sinPhi, -sinTheta1 * cosPhi);
+			glVertex3f(cosTheta1 * dist, innerRadius * sinPhi, -sinTheta1 * dist);
+
+			phi += sideDelta;
+		}
+
+		theta = theta1;
+		cosTheta = cosTheta1;
+		sinTheta = sinTheta1;
+	}
+}

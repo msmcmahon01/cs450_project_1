@@ -5,7 +5,6 @@
 #include <ctype.h>
 #include <time.h>
 #include <iostream>
-#include "functions.cpp"
 
 
 #ifndef F_PI
@@ -116,7 +115,7 @@ enum ButtonVals
 
 // window background color (rgba):
 
-const GLfloat BACKCOLOR[ ] = { 0.5, 0., 0., 1. };
+const GLfloat BACKCOLOR[ ] = { 0.09, 0.09, 0.09, 1.0 };
 
 // line width for the axes:
 
@@ -316,6 +315,7 @@ TimeOfDaySeed( )
 //#include "keytime.cpp"
 //#include "glslprogram.cpp"
 //#include "vertexbufferobject.cpp"
+#include "functions.cpp"
 
 
 // main program:
@@ -807,194 +807,36 @@ InitLists( )
 
 		glBegin( GL_TRIANGLES );
 
-			int verticies = 6;
+			int verticies = 600;
 			int tube_thinness = 5;
 
-			//glColor3f(1, 1, 1);
-			//	glNormal3f(0, 0, 0);
-			//		for (int i = 0; i < verticies - 1; ++i) {
-			//			//glVertex3f(0, 1, 0);
-			//			//glVertex3f((sin((i * 2 * M_PI) / verticies)), (cos((i * 2 * M_PI) / verticies)), 0);
-			//			//glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)), (cos(((1 + i) * 2 * M_PI) / verticies)), 0);
-			//		}
-
-			//glColor3f(0, 1, 1);
-			//	glNormal3f(0, 0, 0);
-			//		for (int i = 0; i < verticies; ++i) {
-			//			//glVertex3f(0, 0, -3);
-			//			//glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)), (cos(((1 + i) * 2 * M_PI) / verticies)), 0);
-			//			//glVertex3f((sin((i * 2 * M_PI) / verticies)), (cos((i * 2 * M_PI) / verticies)), 0);
-			//		}
-
 			// Bell
-			glColor3f(0, 0, 1);
-				glNormal3f(0, 0, 0);
-					for (int i = 0; i < verticies; ++i) {
-						glColor3f(1, 0, 0);
-						glVertex3f((sin((i * 2 * M_PI) / verticies)), (cos((i * 2 * M_PI) / verticies)), 0);
-						glVertex3f((sin((i * 2 * M_PI) / verticies)) / (tube_thinness - 3), (cos((i * 2 * M_PI) / verticies)) / (tube_thinness - 3), -0.75);
-						glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)) / (tube_thinness - 3), (cos(((1 + i) * 2 * M_PI) / verticies)) / (tube_thinness - 3), -0.75);
-
-						glVertex3f((sin((i * 2 * M_PI) / verticies)) / (tube_thinness - 3), (cos((i * 2 * M_PI) / verticies)) / (tube_thinness - 3), -0.75);
-						glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness, (cos((i * 2 * M_PI) / verticies)) / tube_thinness, -2);
-						glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness, (cos(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness, -2);
-
-						glColor3f(0, 1, 0);
-						glVertex3f((sin((i * 2 * M_PI) / verticies)), (cos((i * 2 * M_PI) / verticies)), 0);
-						glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)) / (tube_thinness - 3), (cos(((1 + i) * 2 * M_PI) / verticies)) / (tube_thinness - 3), -0.75);
-						glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)), (cos(((1 + i) * 2 * M_PI) / verticies)), 0);
-
-						glVertex3f((sin((i * 2 * M_PI) / verticies)) / (tube_thinness - 3), (cos((i * 2 * M_PI) / verticies)) / (tube_thinness - 3), -0.75);
-						glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness, (cos(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness, -2);
-						glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)) / (tube_thinness - 3), (cos(((1 + i) * 2 * M_PI) / verticies)) / (tube_thinness - 3), -0.75);
-					}
+			TrmptBell(0, 0, 0, -4, verticies, tube_thinness, 0.929, 0.996, 1);
 
 			// Upper bell pipe
-			//glColor3f(1, 1, 0);
-			//	glNormal3f(0, 0, 0);
-			//		for (int i = 0; i < verticies; ++i) {
-			//			//glColor3f(1, 0, 0);
-			//			glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness, (cos((i * 2 * M_PI) / verticies)) / tube_thinness, -2);
-			//			glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness, (cos((i * 2 * M_PI) / verticies)) / tube_thinness, -10);
-			//			glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness, (cos(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness, -10);
-
-			//			//glColor3f(0, 1, 0);
-			//			glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness, (cos((i * 2 * M_PI) / verticies)) / tube_thinness, -2);
-			//			glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness, (cos(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness, -10);
-			//			glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness, (cos(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness, -2);
-			//		}
-			TrmptTubeXY(0, 0, -2, -10, verticies, tube_thinness);
+			TrmptTubeXY(0, 0, -4, -10, verticies, tube_thinness, 0.929, 0.996, 1);
 
 			// Lower bell pipe
-			glColor3f(1, 0, 1);
-				glNormal3f(0, 0, 0);
-					for (int i = 0; i < verticies; ++i) {
-						//glColor3f(1, 0, 0);
-						glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness - 0.25, (cos((i * 2 * M_PI) / verticies)) / tube_thinness - 2, -7);
-						glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness - 0.25, (cos((i * 2 * M_PI) / verticies)) / tube_thinness - 2, -10);
-						glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness - 0.25, (cos(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness - 2, -10);
-
-						//glColor3f(0, 1, 0);
-						glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness - 0.25, (cos((i * 2 * M_PI) / verticies)) / tube_thinness - 2, -7);
-						glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness - 0.25, (cos(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness - 2, -10);
-						glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness - 0.25, (cos(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness - 2, -7);
-					}
+			TrmptTubeXY(-0.25, -2, -7, -10, verticies, tube_thinness, 0.929, 0.996, 1);
 
 			// Bell pipe curve
-			/*glColor3f(0, 1, 1);
-				glNormal3f(1, 0, 1);
-					for (int i = 0; i < verticies; ++i) {
-						glColor3f(1, 0, 0);
-						glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness, (cos((i * 2 * M_PI) / verticies)) / tube_thinness, -10);
-						glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness, ((cos((i * 2 * M_PI) / verticies)) / tube_thinness), -13);
-						glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness, ((cos((i * 2 * M_PI) / verticies)) / tube_thinness), -13);
-
-						glColor3f(1, 0, 0);
-						glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness, (cos((i * 2 * M_PI) / verticies)) / tube_thinness, -10);
-						glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness, (cos((i * 2 * M_PI) / verticies)) / tube_thinness, -10);
-						glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness, (cos((i * 2 * M_PI) / verticies)) / tube_thinness, -10);
-					}*/
+			// --TODO
+			glColor3f(0, 0, 0);
+			TrmptTubeCurve(0.5, 1, verticies, verticies);
 
 			// Valves
-			glColor3f(0.5, 0.5, 0.5);
-				glNormal3f(0, 0, 0);
-					for (int i = 0; i < verticies; ++i) {
-						tube_thinness = 4;
-						// Valve 1
-						//glColor3f(1, 0, 0);
-						glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness - 0.5, 0.5, (cos((i * 2 * M_PI) / verticies)) / tube_thinness - 6.75);
-						glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness - 0.5, -2.5, (cos((i * 2 * M_PI) / verticies)) / tube_thinness - 6.75);
-						glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness - 0.5, 0.5, (cos(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness - 6.75);
-
-						//glColor3f(0, 1, 0);
-						glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness - 0.5, -2.5, (cos((i * 2 * M_PI) / verticies)) / tube_thinness - 6.75);
-						glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness - 0.5, 0.5, (cos(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness - 6.75);
-						glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness - 0.5, -2.5, (cos(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness - 6.75);
-
-						// Valve 2
-						//glColor3f(1, 0, 0);
-						glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness - 0.5, 0.5, (cos((i * 2 * M_PI) / verticies)) / tube_thinness - 6);
-						glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness - 0.5, -2.5, (cos((i * 2 * M_PI) / verticies)) / tube_thinness - 6);
-						glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness - 0.5, 0.5, (cos(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness - 6);
-
-						//glColor3f(0, 1, 0);
-						glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness - 0.5, -2.5, (cos((i * 2 * M_PI) / verticies)) / tube_thinness - 6);
-						glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness - 0.5, 0.5, (cos(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness - 6);
-						glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness - 0.5, -2.5, (cos(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness - 6);
-
-						// Valve 3
-						//glColor3f(1, 0, 0);
-						glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness - 0.5, 0.5, (cos((i * 2 * M_PI) / verticies)) / tube_thinness - 5.25);
-						glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness - 0.5, -2.5, (cos((i * 2 * M_PI) / verticies)) / tube_thinness - 5.25);
-						glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness - 0.5, 0.5, (cos(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness - 5.25);
-
-						//glColor3f(0, 1, 0);
-						glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness - 0.5, -2.5, (cos((i * 2 * M_PI) / verticies)) / tube_thinness - 5.25);
-						glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness - 0.5, 0.5, (cos(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness - 5.25);
-						glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness - 0.5, -2.5, (cos(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness - 5.25);
-
-						tube_thinness = 5;
-					}
-
-			// Lower lead pipe
-			glColor3f(0.5, 0, 0);
-				glNormal3f(0, 0, 0);
-					for (int i = 0; i < verticies; ++i) {
-						//glColor3f(1, 0, 0);
-						glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness - 0.75, (cos((i * 2 * M_PI) / verticies)) / tube_thinness - 2, -3);
-						glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness - 0.75, (cos((i * 2 * M_PI) / verticies)) / tube_thinness - 2, -5);
-						glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness - 0.75, (cos(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness - 2, -5);
-
-						//glColor3f(0, 1, 0);
-						glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness - 0.75, (cos((i * 2 * M_PI) / verticies)) / tube_thinness - 2, -3);
-						glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness - 0.75, (cos(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness - 2, -5);
-						glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness - 0.75, (cos(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness - 2, -3);
-					}
+			TrmptTubeXZ(-0.5, 0.5, -2.5, -6.75, verticies, tube_thinness, 0.929, 0.996, 1);
+			TrmptTubeXZ(-0.5, 0.5, -2.5, -6, verticies, tube_thinness, 0.929, 0.996, 1);
+			TrmptTubeXZ(-0.5, 0.5, -2.5, -5.25, verticies, tube_thinness, 0.929, 0.996, 1);
 
 			// Upper lead pipe
-			glColor3f(0, 0.5, 0);
-				glNormal3f(0, 0, 0);
-					for (int i = 0; i < verticies; ++i) {
-						//glColor3f(1, 0, 0);
-						glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness - 1, (cos((i * 2 * M_PI) / verticies)) / tube_thinness, -3);
-						glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness - 1, (cos((i * 2 * M_PI) / verticies)) / tube_thinness, -12);
-						glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness - 1, (cos(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness, -12);
+			TrmptTubeXY(-1, 0, -3, -12, verticies, tube_thinness, 0.929, 0.996, 1);
 
-						//glColor3f(0, 1, 0);
-						glVertex3f((sin((i * 2 * M_PI) / verticies)) / tube_thinness - 1, (cos((i * 2 * M_PI) / verticies)) / tube_thinness, -3);
-						glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness - 1, (cos(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness, -12);
-						glVertex3f((sin(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness - 1, (cos(((1 + i) * 2 * M_PI) / verticies)) / tube_thinness, -3);
-					}
+			// Lower lead pipe
+			TrmptTubeXY(-0.75, -2, -3, -5, verticies, tube_thinness, 0.929, 0.996, 1);
 
-
-
-					//glVertex3f(0, 1 / 3, -10);
-					//glVertex3f(0, 0.5 / 3 - 2, -15);
-					//glVertex3f(0.86 / 3, 0.5 / 3, -15);
-
-					//glVertex3f(0.43, 0.25, -3);
-					//glVertex3f(0.86, 0.5, 0);
-					//glVertex3f(0, 1, 0);
-
-					//glVertex3f(0.86, 0.5, 0);
-					//glVertex3f(0.86, -0.5, 0);
-					//glVertex3f(0, 0, -3);
-
-					//glVertex3f(0.86, -0.5, 0);
-					//glVertex3f(0, -1, 0);
-					//glVertex3f(0, 0, -3);
-
-					//glVertex3f(0, -1, 0);
-					//glVertex3f(-0.86, -0.5, 0);
-					//glVertex3f(0, 0, -3);
-
-					//glVertex3f(-0.86, -0.5, 0);
-					//glVertex3f(-0.86, 0.5, 0);
-					//glVertex3f(0, 0, -3);
-
-					//glVertex3f(-0.86, 0.5, 0);
-					//glVertex3f(0, 1, 0);
-					//glVertex3f(0, 0, -3);
+			// Lead pipe curve
+			// --TODO
 
 		glEnd( );
 #ifdef NOTDEF
