@@ -803,9 +803,9 @@ InitLists( )
 	BoxList = glGenLists( 1 );
 	glNewList( BoxList, GL_COMPILE );
 
-	glTranslatef(0.f, 0.f, 8.f);
+	glTranslatef(0.f, 0.5f, 5.f);
 
-		int verticies = 6;
+		int verticies = 100;
 		int tube_thinness = 5;
 
 		// Bell
@@ -816,6 +816,11 @@ InitLists( )
 
 		// Lower bell pipe
 		TrmptTubeXY(-0.25f, -2.f, -8.f, -10.f, verticies, tube_thinness, 0.776f, 0.988f, 1.f);
+		glRotatef(180.f, 1.f, 0.f, 0.f);
+		glTranslatef(-0.5f, 2.f, 8.f);
+		TrmptTubeCurveQuarter(0.2f, 0.25f, verticies, verticies * 2, 0.478f, 1.f, 0.514f);
+		glTranslatef(0.5f, -2.f, -8.f);
+		glRotatef(-180.f, 1.f, 0.f, 0.f);
 
 		// Bell pipe curve
 		glRotatef(-7.f, 0.f, 0.f, 1.f);
@@ -839,6 +844,11 @@ InitLists( )
 
 		// Lower lead pipe
 		TrmptTubeXY(-0.75f, -2.f, -3.f, -6.f, verticies, tube_thinness, 0.776f, 0.988f, 1.f);
+		glRotatef(180.f, 0.f, 0.f, 1.f);
+		glTranslatef(0.5f, 2.f, -6.f);
+		TrmptTubeCurveQuarter(0.2f, 0.25f, verticies, verticies * 2, 0.478f, 1.f, 0.514f);
+		glTranslatef(-0.5f, -2.f, 6.f);
+		glRotatef(-180.f, 0.f, 0.f, 1.f);
 
 		// Lead pipe curve
 		glRotatef(7.f, 0.f, 0.f, 1.f);
@@ -862,17 +872,56 @@ InitLists( )
 		TrmptTubeXY(-0.5f, -2.5f, -6.25f, -7.f, verticies, tube_thinness + 2.f, 1.f, 0.584f, 0.349f);
 
 		// Valve connector curves
-
+		// 1st
+		glRotatef(180.f, 1.f, 0.f, 0.f);
+		glRotatef(180.f, 0.f, 0.f, 1.f);
+		glTranslatef(0.5f, -2.25f, 8.f);
+		TrmptTubeCurveQuarter(0.2f, 0.25f, verticies, verticies * 2, 0.478f, 1.f, 0.514f);
+		glTranslatef(-0.5f, 2.25f, -8.f);
+		glRotatef(-180.f, 0.f, 0.f, 1.f);
+		glRotatef(-180.f, 1.f, 0.f, 0.f);
+		glRotatef(180.f, 1.f, 0.f, 0.f);
+		glRotatef(180.f, 0.f, 0.f, 1.f);
+		glTranslatef(0.5f, -1.75f, 8.f);
+		TrmptTubeCurveQuarter(0.2f, 0.25f, verticies, verticies * 2, 0.478f, 1.f, 0.514f);
+		glTranslatef(-0.5f, 1.75f, -8.f);
+		glRotatef(-180.f, 0.f, 0.f, 1.f);
+		glRotatef(-180.f, 1.f, 0.f, 0.f);
+		// 3rd
+		glTranslatef(-0.5f, -2.25f, -6.f);
+		TrmptTubeCurveQuarter(0.2f, 0.25f, verticies, verticies * 2, 0.478f, 1.f, 0.514f);
+		glTranslatef(0.5f, 2.25f, 6.f);
+		glTranslatef(-0.5f, -1.75f, -6.f);
+		TrmptTubeCurveQuarter(0.2f, 0.25f, verticies, verticies * 2, 0.478f, 1.f, 0.514f);
+		glTranslatef(0.5f, 1.75f, 6.f);
 
 		// Slides
-		// 1st
+		// 3rd
 		TrmptTubeXY(-0.25f, -2.25f, -3.5f, -6.f, verticies, tube_thinness, 1.f, 1.f, 1.f);
 		TrmptTubeXY(-0.25f, -1.75f, -3.5f, -6.f, verticies, tube_thinness, 1.f, 1.f, 1.f);
+		glRotatef(-90.f, 0.f, 0.f, 1.f);
+		glTranslatef(2.f, -0.75f, -9.5f);
+		TrmptTubeCurve(0.2f, 0.25f, verticies, verticies * 2, 0.478f, 1.f, 0.514f);
+		glTranslatef(-2.f, 0.75f, 9.5f);
+		glRotatef(90.f, 0.f, 0.f, 1.f);
 		// 2nd
-
-		// 3rd
+		glRotatef(-90.f, 0.f, 0.f, 1.f);
+		glRotatef(-45.f, 1.f, 0.f, 0.f);
+		glTranslatef(2.f, 4.5f, -5.5f);
+		TrmptTubeCurve(0.2f, 0.25f, verticies, verticies * 2, 0.478f, 1.f, 0.514f);
+		glTranslatef(-2.f, -4.5f, 5.5f);
+		glRotatef(45.f, 1.f, 0.f, 0.f);
+		glRotatef(90.f, 0.f, 0.f, 1.f);
+		// 1st
 		TrmptTubeXY(-0.75f, -2.25f, -8.f, -9.5f, verticies, tube_thinness, 1.f, 1.f, 1.f);
 		TrmptTubeXY(-0.75f, -1.75f, -8.f, -9.5f, verticies, tube_thinness, 1.f, 1.f, 1.f);
+		glRotatef(90.f, 0.f, 0.f, 1.f);
+		glRotatef(180.f, 0.f, 1.f, 0.f);
+		glTranslatef(2.f, 0.25f, 3.5f);
+		TrmptTubeCurve(0.2f, 0.25f, verticies, verticies * 2, 0.478f, 1.f, 0.514f);
+		glTranslatef(-2.f, -0.25f, -4.f);
+		glRotatef(-180.f, 0.f, 1.f, 0.f);
+		glRotatef(-90.f, 0.f, 0.f, 1.f);
 
 #ifdef NOTDEF
 		glColor3f(1., 1., 1.);

@@ -94,6 +94,7 @@ TrmptTubeXZ(float x_pos, float y_pos_s, float y_pos_e, float z_pos, int verticie
 	glEnd();
 }
 
+// Modified OSUtorus to get this result
 void
 TrmptTubeCurve(float innerRadius, float outerRadius, int nsides, int nrings, float r, float g, float b) {
 	float ringDelta = F_PI / (float)nrings;
@@ -144,8 +145,9 @@ TrmptTubeCurve(float innerRadius, float outerRadius, int nsides, int nrings, flo
 	}
 }
 
+// Modified OSUtorus to get this result
 void
-TrmptTubeCurveQuarter(float innerRadius, float outerRadius, int nsides, int nrings) {
+TrmptTubeCurveQuarter(float innerRadius, float outerRadius, int nsides, int nrings, float r, float g, float b) {
 	float ringDelta = F_PI / 2 / (float)nrings;
 	float sideDelta = 2.0 * F_PI / (float)nsides;
 
@@ -163,6 +165,8 @@ TrmptTubeCurveQuarter(float innerRadius, float outerRadius, int nsides, int nrin
 		float s0 = 1.f - (float)(i + 0) / (float)nrings;
 		float s1 = 1.f - (float)(i + 1) / (float)nrings;
 
+		glBegin(GL_TRIANGLE_STRIP);
+
 		for (int j = 0; j <= nsides; j++)
 		{
 			float cosPhi = cosf(phi);
@@ -173,14 +177,18 @@ TrmptTubeCurveQuarter(float innerRadius, float outerRadius, int nsides, int nrin
 
 			glTexCoord2f(s0, t);
 			glNormal3f(cosTheta * cosPhi, sinPhi, -sinTheta * cosPhi);
+			glColor3f(r, g, b);
 			glVertex3f(cosTheta * dist, innerRadius * sinPhi, -sinTheta * dist);
 
 			glTexCoord2f(s1, t);
 			glNormal3f(cosTheta1 * cosPhi, sinPhi, -sinTheta1 * cosPhi);
+			glColor3f(r, g, b);
 			glVertex3f(cosTheta1 * dist, innerRadius * sinPhi, -sinTheta1 * dist);
 
 			phi += sideDelta;
 		}
+
+		glEnd();
 
 		theta = theta1;
 		cosTheta = cosTheta1;
