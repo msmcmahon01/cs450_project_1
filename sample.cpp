@@ -331,7 +331,7 @@ main( int argc, char *argv[ ] )
 
 	// setup all the graphics stuff:
 
-	InitGraphics( );
+	InitGraphics( ); 
 
 	// create the display lists that **will not change**:
 
@@ -803,42 +803,77 @@ InitLists( )
 	BoxList = glGenLists( 1 );
 	glNewList( BoxList, GL_COMPILE );
 
-	glTranslatef(0, 0, 5);
+	glTranslatef(0.f, 0.f, 8.f);
 
-		glBegin( GL_TRIANGLES );
+		int verticies = 6;
+		int tube_thinness = 5;
 
-			int verticies = 600;
-			int tube_thinness = 5;
+		// Bell
+		TrmptBell(0.f, 0.f, 0.f, -4.f, verticies, tube_thinness, 0.929f, 0.996f, 1.f);
 
-			// Bell
-			TrmptBell(0, 0, 0, -4, verticies, tube_thinness, 0.929, 0.996, 1);
+		// Upper bell pipe
+		TrmptTubeXY(0.f, 0.f, -4.f, -10.f, verticies, tube_thinness, 0.776f, 0.988f, 1.f);
 
-			// Upper bell pipe
-			TrmptTubeXY(0, 0, -4, -10, verticies, tube_thinness, 0.929, 0.996, 1);
+		// Lower bell pipe
+		TrmptTubeXY(-0.25f, -2.f, -8.f, -10.f, verticies, tube_thinness, 0.776f, 0.988f, 1.f);
 
-			// Lower bell pipe
-			TrmptTubeXY(-0.25, -2, -7, -10, verticies, tube_thinness, 0.929, 0.996, 1);
+		// Bell pipe curve
+		glRotatef(-7.f, 0.f, 0.f, 1.f);
+		glRotatef(90.f, 0.f, 0.f, 1.f);
+		glTranslatef(-1.f, 0.f, -10.f);
+		TrmptTubeCurve(0.2f, 1.f, verticies, verticies * 2, 0.478f, 1.f, 0.514f);
+		glTranslatef(1.f, 0.f, 10.f);
+		glRotatef(-90.f, 0.f, 0.f, 1.f);
+		glRotatef(7.f, 0.f, 0.f, 1.f);
 
-			// Bell pipe curve
-			// --TODO
-			glColor3f(0, 0, 0);
-			TrmptTubeCurve(0.5, 1, verticies, verticies);
+		// Valves
+		// 1st
+		TrmptTubeXZ(-0.5f, 0.5f, -2.75f, -7.75f, verticies, tube_thinness - 1.f, 0.847f, 0.478f, 1.f);
+		// 2nd
+		TrmptTubeXZ(-0.5f, 0.5f, -2.75f, -7.f, verticies, tube_thinness - 1.f, 0.847f, 0.478f, 1.f);
+		// 3rd
+		TrmptTubeXZ(-0.5f, 0.5f, -2.75f, -6.25f, verticies, tube_thinness - 1.f, 0.847f, 0.478f, 1.f);
 
-			// Valves
-			TrmptTubeXZ(-0.5, 0.5, -2.5, -6.75, verticies, tube_thinness, 0.929, 0.996, 1);
-			TrmptTubeXZ(-0.5, 0.5, -2.5, -6, verticies, tube_thinness, 0.929, 0.996, 1);
-			TrmptTubeXZ(-0.5, 0.5, -2.5, -5.25, verticies, tube_thinness, 0.929, 0.996, 1);
+		// Upper lead pipe
+		TrmptTubeXY(-1.f, 0.f, -3.f, -12.f, verticies, tube_thinness, 0.776f, 0.988f, 1.f);
 
-			// Upper lead pipe
-			TrmptTubeXY(-1, 0, -3, -12, verticies, tube_thinness, 0.929, 0.996, 1);
+		// Lower lead pipe
+		TrmptTubeXY(-0.75f, -2.f, -3.f, -6.f, verticies, tube_thinness, 0.776f, 0.988f, 1.f);
 
-			// Lower lead pipe
-			TrmptTubeXY(-0.75, -2, -3, -5, verticies, tube_thinness, 0.929, 0.996, 1);
+		// Lead pipe curve
+		glRotatef(7.f, 0.f, 0.f, 1.f);
+		glRotatef(180.f, 1.f, 0.f, 0.f);
+		glRotatef(90.f, 0.f, 0.f, 1.f);
+		glTranslatef(0.9f, 1.f, 3.f);
+		TrmptTubeCurve(0.2f, 1.f, verticies, verticies * 2, 0.478f, 1.f, 0.514f);
+		glTranslatef(-0.9f, -1.f, -3.f);
+		glRotatef(-90.f, 0.f, 0.f, 1.f);
+		glRotatef(-180.f, 1.f, 0.f, 0.f);
+		glRotatef(-7.f, 0.f, 0.f, 1.f);
 
-			// Lead pipe curve
-			// --TODO
+		// Valve connectors
+		// 1st -> 2nd
+		TrmptTubeXY(-0.45f, -1.f, -7.f, -7.75f, verticies, tube_thinness + 2.f, 1.f, 0.584f, 0.349f);
+		TrmptTubeXY(-0.5f, -1.75f, -7.f, -7.75f, verticies, tube_thinness + 1.5f, 1.f, 0.584f, 0.349f);
+		TrmptTubeXY(-0.45f, -2.5f, -7.f, -7.75f, verticies, tube_thinness + 2.f, 1.f, 0.584f, 0.349f);
+		// 2nd -> 3rd
+		TrmptTubeXY(-0.5f, -1.f, -6.25f, -7.f, verticies, tube_thinness + 2.f, 1.f, 0.584f, 0.349f);
+		TrmptTubeXY(-0.5f, -2.f, -6.25f, -7.f, verticies, tube_thinness + 1.5f, 1.f, 0.584f, 0.349f);
+		TrmptTubeXY(-0.5f, -2.5f, -6.25f, -7.f, verticies, tube_thinness + 2.f, 1.f, 0.584f, 0.349f);
 
-		glEnd( );
+		// Valve connector curves
+
+
+		// Slides
+		// 1st
+		TrmptTubeXY(-0.25f, -2.25f, -3.5f, -6.f, verticies, tube_thinness, 1.f, 1.f, 1.f);
+		TrmptTubeXY(-0.25f, -1.75f, -3.5f, -6.f, verticies, tube_thinness, 1.f, 1.f, 1.f);
+		// 2nd
+
+		// 3rd
+		TrmptTubeXY(-0.75f, -2.25f, -8.f, -9.5f, verticies, tube_thinness, 1.f, 1.f, 1.f);
+		TrmptTubeXY(-0.75f, -1.75f, -8.f, -9.5f, verticies, tube_thinness, 1.f, 1.f, 1.f);
+
 #ifdef NOTDEF
 		glColor3f(1., 1., 1.);
 		glBegin(GL_TRIANGLES);
