@@ -304,7 +304,7 @@ TimeOfDaySeed( )
 }
 
 // these are here for when you need them -- just uncomment the ones you need:
-
+int verts = 0;
 //#include "setmaterial.cpp"
 //#include "setlight.cpp"
 #include "osusphere.cpp"
@@ -922,6 +922,8 @@ InitLists( )
 		glTranslatef(-2.f, -0.25f, -4.f);
 		glRotatef(-180.f, 0.f, 1.f, 0.f);
 		glRotatef(-90.f, 0.f, 0.f, 1.f);
+
+		std::cout << "Number of verticies: " << verts << std::endl;
 
 #ifdef NOTDEF
 		glColor3f(1., 1., 1.);

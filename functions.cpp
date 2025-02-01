@@ -44,6 +44,8 @@ TrmptBell(float x_pos, float y_pos, float z_pos_s, float z_pos_e, int verticies,
 			glVertex3f(sinNum / (thinness * 2 / 4) + x_pos, cosNum / (thinness * 2 / 4) + y_pos, z_pos_e / 4);
 			glVertex3f(sinNumi1 / thinness + x_pos, cosNumi1 / thinness + y_pos, z_pos_e);
 			glVertex3f(sinNumi1 / (thinness * 2 / 4) + x_pos, cosNumi1 / (thinness * 2 / 4) + y_pos, z_pos_e / 4);
+
+			verts += 12;
 		}
 	glEnd();
 }
@@ -67,6 +69,8 @@ TrmptTubeXY(float x_pos, float y_pos, float z_pos_s, float z_pos_e, int verticie
 			glVertex3f(sinNum, cosNum, z_pos_s);
 			glVertex3f(sinNumi1, cosNumi1, z_pos_e);
 			glVertex3f(sinNumi1, cosNumi1, z_pos_s);
+
+			verts += 6;
 		}
 	glEnd();
 }
@@ -90,6 +94,8 @@ TrmptTubeXZ(float x_pos, float y_pos_s, float y_pos_e, float z_pos, int verticie
 			glVertex3f(sinNum, y_pos_s, cosNum);
 			glVertex3f(sinNumi1, y_pos_e, cosNumi1);
 			glVertex3f(sinNumi1, y_pos_s, cosNumi1);
+
+			verts += 6;
 		}
 	glEnd();
 }
@@ -135,6 +141,8 @@ TrmptTubeCurve(float innerRadius, float outerRadius, int nsides, int nrings, flo
 			glVertex3f(cosTheta1 * dist, innerRadius * sinPhi, -sinTheta1 * dist);
 
 			phi += sideDelta;
+
+			verts += 2;
 		}
 
 		glEnd();
